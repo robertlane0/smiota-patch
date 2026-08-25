@@ -1,0 +1,48 @@
+.class public Lcom/crashlytics/android/core/QueueFileLogStore$LogBytes;
+.super Ljava/lang/Object;
+.source "Source"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lcom/crashlytics/android/core/QueueFileLogStore;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x1
+    name = "LogBytes"
+.end annotation
+
+
+# instance fields
+.field final synthetic a:Lcom/crashlytics/android/core/QueueFileLogStore;
+
+.field public final bytes:[B
+
+.field public final offset:I
+
+
+# direct methods
+.method public constructor <init>(Lcom/crashlytics/android/core/QueueFileLogStore;[BI)V
+    .locals 0
+
+    .line 1
+    iput-object p1, p0, Lcom/crashlytics/android/core/QueueFileLogStore$LogBytes;->a:Lcom/crashlytics/android/core/QueueFileLogStore;
+
+    .line 2
+    .line 3
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 4
+    .line 5
+    .line 6
+    iput-object p2, p0, Lcom/crashlytics/android/core/QueueFileLogStore$LogBytes;->bytes:[B
+
+    .line 7
+    .line 8
+    iput p3, p0, Lcom/crashlytics/android/core/QueueFileLogStore$LogBytes;->offset:I
+
+    .line 9
+    .line 10
+    return-void
+.end method

@@ -1,0 +1,152 @@
+.class public Lio/fabric/sdk/android/services/common/SafeToast;
+.super Landroid/widget/Toast;
+.source "Source"
+
+
+# direct methods
+.method public constructor <init>(Landroid/content/Context;)V
+    .locals 0
+
+    .line 1
+    invoke-direct {p0, p1}, Landroid/widget/Toast;-><init>(Landroid/content/Context;)V
+
+    .line 2
+    .line 3
+    .line 4
+    return-void
+.end method
+
+.method static synthetic a(Lio/fabric/sdk/android/services/common/SafeToast;)V
+    .locals 0
+
+    .line 1
+    invoke-super {p0}, Landroid/widget/Toast;->show()V
+
+    .line 2
+    .line 3
+    .line 4
+    return-void
+.end method
+
+.method public static makeText(Landroid/content/Context;II)Landroid/widget/Toast;
+    .locals 1
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/content/res/Resources$NotFoundException;
+        }
+    .end annotation
+
+    .line 5
+    invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p1}, Landroid/content/res/Resources;->getText(I)Ljava/lang/CharSequence;
+
+    move-result-object p1
+
+    invoke-static {p0, p1, p2}, Lio/fabric/sdk/android/services/common/SafeToast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+
+    move-result-object p0
+
+    return-object p0
+.end method
+
+.method public static makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+    .locals 0
+
+    .line 1
+    invoke-static {p0, p1, p2}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+
+    move-result-object p1
+
+    .line 2
+    new-instance p2, Lio/fabric/sdk/android/services/common/SafeToast;
+
+    invoke-direct {p2, p0}, Lio/fabric/sdk/android/services/common/SafeToast;-><init>(Landroid/content/Context;)V
+
+    .line 3
+    invoke-virtual {p1}, Landroid/widget/Toast;->getView()Landroid/view/View;
+
+    move-result-object p0
+
+    invoke-virtual {p2, p0}, Landroid/widget/Toast;->setView(Landroid/view/View;)V
+
+    .line 4
+    invoke-virtual {p1}, Landroid/widget/Toast;->getDuration()I
+
+    move-result p0
+
+    invoke-virtual {p2, p0}, Landroid/widget/Toast;->setDuration(I)V
+
+    return-object p2
+.end method
+
+
+# virtual methods
+.method public show()V
+    .locals 2
+
+    .line 1
+    invoke-static {}, Landroid/os/Looper;->myLooper()Landroid/os/Looper;
+
+    .line 2
+    .line 3
+    .line 4
+    move-result-object v0
+
+    .line 5
+    invoke-static {}, Landroid/os/Looper;->getMainLooper()Landroid/os/Looper;
+
+    .line 6
+    .line 7
+    .line 8
+    move-result-object v1
+
+    .line 9
+    if-ne v0, v1, :cond_0
+
+    .line 10
+    .line 11
+    invoke-super {p0}, Landroid/widget/Toast;->show()V
+
+    .line 12
+    .line 13
+    .line 14
+    return-void
+
+    .line 15
+    :cond_0
+    new-instance v0, Landroid/os/Handler;
+
+    .line 16
+    .line 17
+    invoke-static {}, Landroid/os/Looper;->getMainLooper()Landroid/os/Looper;
+
+    .line 18
+    .line 19
+    .line 20
+    move-result-object v1
+
+    .line 21
+    invoke-direct {v0, v1}, Landroid/os/Handler;-><init>(Landroid/os/Looper;)V
+
+    .line 22
+    .line 23
+    .line 24
+    new-instance v1, Lio/fabric/sdk/android/services/common/SafeToast$a;
+
+    .line 25
+    .line 26
+    invoke-direct {v1, p0}, Lio/fabric/sdk/android/services/common/SafeToast$a;-><init>(Lio/fabric/sdk/android/services/common/SafeToast;)V
+
+    .line 27
+    .line 28
+    .line 29
+    invoke-virtual {v0, v1}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
+
+    .line 30
+    .line 31
+    .line 32
+    return-void
+.end method

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent" android:layout_height="@dimen/_55dp"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:background="@color/derk_read" android:layout_width="match_parent" android:layout_height="@dimen/_55dp">
+        <TextView android:textColor="@android:color/white" android:gravity="center_horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/you_are_offline_please_check_your_internet_connection" android:layout_centerInParent="true" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@drawable/background_stoke" android:padding="@dimen/_2dp" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:background="@android:color/darker_gray" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="1.0dp" android:layout_centerHorizontal="true" android:layout_centerVertical="true">
+        <ImageView android:id="@id/qrcodeImage" android:layout_width="@dimen/_200dp" android:layout_height="@dimen/_200dp" android:src="@color/smiotaGreen" android:adjustViewBounds="true" android:layout_alignParentTop="true" android:layout_centerInParent="true" />
+        <TextView android:textSize="@dimen/_18sp" android:textColor="@android:color/white" android:id="@id/text_view_passcode" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/_5dp" android:text="" android:maxLength="40" android:layout_below="@id/qrcodeImage" android:layout_alignLeft="@id/qrcodeImage" android:layout_alignRight="@id/qrcodeImage" />
+    </RelativeLayout>
+</RelativeLayout>

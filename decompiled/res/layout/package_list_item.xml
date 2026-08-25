@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="24.0sp" android:textStyle="bold" android:id="@id/packageLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dp" android:fontFamily="sans-serif-thin" />
+    <TextView android:textSize="18.0sp" android:textColor="@android:color/darker_gray" android:id="@id/receivedTime" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dp" android:layout_marginTop="10.0dp" android:layout_below="@id/packageLabel" />
+    <Button android:textColor="@android:color/white" android:id="@id/openLockerBtn" android:background="@android:color/holo_green_dark" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20.0dp" android:text="Open Locker" android:layout_below="@id/receivedTime" />
+    <TextView android:textColor="@android:color/white" android:id="@id/notInLocker" android:background="@android:color/darker_gray" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20.0dp" android:text="Contact Staff. Package is probably in the mailroom" android:layout_below="@id/receivedTime" />
+</RelativeLayout>
