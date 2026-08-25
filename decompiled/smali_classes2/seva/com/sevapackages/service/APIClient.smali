@@ -231,7 +231,7 @@
 
     .line 94
     .line 95
-    const-wide/16 v2, 0x1e
+    const-wide/16 v2, 0x78
 
     .line 96
     .line 97
@@ -478,7 +478,7 @@
 
     .line 79
     .line 80
-    const-wide/16 v2, 0x1e
+    const-wide/16 v2, 0x78
 
     .line 81
     .line 82
