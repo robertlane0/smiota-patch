@@ -389,7 +389,7 @@
 
     .line 79
     .line 80
-    const/16 v2, 0x3a98
+    const v2, 0x927c0
 
     .line 81
     .line 82

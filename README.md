@@ -17,6 +17,12 @@ Both occurrences were changed to **600 seconds** (`const-wide/16 v2, 0x258`):
 2. `getOkHttpClient()` — used by additional Retrofit builders
    (same file, line ~481)
 
+Additionally, the app's legacy `URLConnection`-based client
+(`decompiled/smali_classes2/seva/com/sevapackages/service/HttpClient.smali`,
+line ~392 — used by all `SevaServiceImpl` calls and BLE region reporting) had a
+hardcoded **15-second** connect timeout (`const/16 v2, 0x3a98`), also raised to
+600 seconds (`const v2, 0x927c0`). This class sets no read timeout.
+
 No other code was modified. BLE scan configuration values in
 `seva/com/sevapackages/service/RegionScan.smali` were inspected and left untouched
 (they are not network-related).
