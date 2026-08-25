@@ -23,6 +23,13 @@ line ~392 — used by all `SevaServiceImpl` calls and BLE region reporting) had 
 hardcoded **15-second** connect timeout (`const/16 v2, 0x3a98`), also raised to
 600 seconds (`const v2, 0x927c0`). This class sets no read timeout.
 
+Finally, `APICalls` shows a progress dialog for every Retrofit call and dismisses
+it via a Handler after **10 seconds** (`LOADING_WINDOW_TIMEOUT_SECONDS`,
+`const/16 v0, 0xa` at line ~179 of
+`decompiled/smali_classes2/seva/com/sevapackages/service/APICalls.smali`),
+which made requests *appear* to time out even when the network layer was still
+waiting. Raised to 600 seconds as well.
+
 No other code was modified. BLE scan configuration values in
 `seva/com/sevapackages/service/RegionScan.smali` were inspected and left untouched
 (they are not network-related).

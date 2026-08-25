@@ -176,7 +176,7 @@
 
     .line 22
     .line 23
-    const/16 v0, 0xa
+    const/16 v0, 0x258
 
     .line 24
     .line 25
