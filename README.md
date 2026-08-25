@@ -27,7 +27,7 @@ No other code was modified. BLE scan configuration values in
 |------|------------------|--------|
 | 1 | Decompiled with `apktool d -f -o decompiled seva.com.sevapackages-32.apk` | `80ec68f` |
 | 2 | Located and patched timeout constants (30s → 120s) in smali | `edfa0bb` |
-| 3 | Rebuilt with `apktool b -o seva-modded-unsigned.apk decompiled`, signed via `keytool` + `jarsigner` using `debug.keystore` | `eda20c8` |
+| 3 | Rebuilt with `apktool b -o seva-modded-unsigned.apk decompiled`, zipaligned (`zipalign -f -p 4`), signed via `apksigner` using `debug.keystore`. Note: Android 11+ (targetSdk 30+) requires `resources.arsc` stored uncompressed and 4-byte aligned, plus a v2+ signature — plain `jarsigner` alone fails install with error -124 | `eda20c8` |
 | 4 | Added this README | *(this commit)* |
 
 ## Artifacts
