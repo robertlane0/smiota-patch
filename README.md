@@ -10,7 +10,7 @@ Repackaged build of `seva.com.sevapackages-32.apk` with increased network timeou
 
 The app's networking layer (`seva.com.sevapackages.service.APIClient`) builds OkHttp/Retrofit clients with connect, read, and write timeouts hardcoded to **30 seconds** (`const-wide/16 v2, 0x1e` in smali).
 
-Both occurrences were changed to **120 seconds** (`const-wide/16 v2, 0x78`):
+Both occurrences were changed to **600 seconds** (`const-wide/16 v2, 0x258`):
 
 1. `getClient(Context)` — used by most API calls
    (`decompiled/smali_classes2/seva/com/sevapackages/service/APIClient.smali`, line ~234)
@@ -40,7 +40,7 @@ No other code was modified. BLE scan configuration values in
 ## Verification
 
 The signed APK was decompiled again and checked: both timeout call sites now
-load `0x78` (120) before `connectTimeout`/`readTimeout`/`writeTimeout`.
+load `0x258` (600) before `connectTimeout`/`readTimeout`/`writeTimeout`.
 
 ## Install Note
 
