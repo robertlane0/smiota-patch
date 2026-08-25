@@ -33,8 +33,12 @@
 
 # virtual methods
 .method public log(Ljava/lang/String;)V
-    .locals 0
+    .locals 1
 
     .line 1
+    const-string v0, "SevaOkHttp"
+
+    invoke-static {v0, p1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
     return-void
 .end method
