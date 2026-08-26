@@ -2452,14 +2452,25 @@
 .end method
 
 .method protected onCreate(Landroid/os/Bundle;)V
-    .locals 0
+    .locals 3
 
     .line 1
     invoke-super {p0, p1}, Landroidx/appcompat/app/AppCompatActivity;->onCreate(Landroid/os/Bundle;)V
 
     .line 2
+    sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
+    const/16 v1, 0x1c
+    if-lt v0, v1, :cond_cutout_done
+    invoke-virtual {p0}, Landroid/app/Activity;->getWindow()Landroid/view/Window;
+    move-result-object v0
+    invoke-virtual {v0}, Landroid/view/Window;->getAttributes()Landroid/view/WindowManager$LayoutParams;
+    move-result-object v1
+    const/4 v2, 0x2
+    iput v2, v1, Landroid/view/WindowManager$LayoutParams;->layoutInDisplayCutoutMode:I
+    invoke-virtual {v0, v1}, Landroid/view/Window;->setAttributes(Landroid/view/WindowManager$LayoutParams;)V
+    :cond_cutout_done
+
     .line 3
-    .line 4
     invoke-direct {p0}, Lseva/com/sevapackages/activity/BaseActivity;->a()Z
 
     .line 5
