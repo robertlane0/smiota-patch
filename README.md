@@ -1,6 +1,6 @@
 # Seva APK Timeout Patch
 
-Repackaged build of `seva.com.sevapackages-32.apk` with increased network timeouts.
+Repackaged build of `seva.com.sevapackages-32.apk` with increased network timeouts and display cutout/status-bar overlap fixes.
 
 ## Original Prompt
 
@@ -39,6 +39,12 @@ Layout view-bounds and toolbar badge fixes were applied to prevent clipping/coll
 - `decompiled/res/layout/activity_welcome_screen.xml` — added `clipChildren`/`clipToPadding` on `parentRelativeLayout` and `imageView`, added bottom margins and `layout_constraintTop_toBottomOf` for proper spacing.
 - `decompiled/res/layout/design_bottom_navigation_item.xml` — changed `BaselineLayout` `clipChildren`/`clipToPadding` from `false` to `true`.
 
+Camera cutout / status-bar overlap was fixed to keep content below the display cutout:
+
+- `decompiled/res/values/styles.xml` — `AppTheme` (parent `Theme.AppCompat.Light.NoActionBar`) now sets `android:windowLayoutInDisplayCutoutMode="never"`, `android:windowOptOutEdgeToEdgeEnforcement="true"`, `android:windowTranslucentStatus="false"`, `android:windowDrawsSystemBarBackgrounds="true"`, and `android:statusBarColor="@android:color/white"`.
+- All activity root layouts now include `android:fitsSystemWindows="true"`: `activity_auth_temp_passcode.xml`, `activity_confirm_setup.xml`, `activity_help.xml`, `activity_main.xml` (`mainRootLayout`), `activity_package_history.xml`, `activity_phone_auth.xml`, `activity_settings.xml`, `activity_signature.xml` (`parent`), `activity_terms_screen.xml`, `activity_welcome_screen.xml` (`parentRelativeLayout`) — 10 files total.
+- `decompiled/smali_classes2/seva/com/sevapackages/activity/BaseActivity.smali` `onCreate` now enforces `LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER` (value `2`) at runtime on Android P+ (`SDK_INT >= 28`, `0x1c`) via `Window.getAttributes().layoutInDisplayCutoutMode`.
+
 BLE scan configuration values in `seva/com/sevapackages/service/RegionScan.smali` were inspected and left untouched (they are not network-related).
 
 ## Process
@@ -51,7 +57,8 @@ BLE scan configuration values in `seva/com/sevapackages/service/RegionScan.smali
 | 4 | Enabled OkHttp `HttpLoggingInterceptor` BODY logging (`APIClient$a.log` → `Log.d("SevaOkHttp", ...)`) to diagnose 30s auth failures | `99aec2c` |
 | 5 | Fixed view-bounds breach / toolbar badge collision in `activity_main.xml`, `activity_signature.xml`, `activity_welcome_screen.xml`, `design_bottom_navigation_item.xml` | `442902c`, `e286de0` |
 | 6 | Rebuilt with `apktool b -o seva-modded-unsigned.apk decompiled`, zipaligned (`zipalign -f -p 4`), signed via `apksigner` using `debug.keystore`. Note: Android 11+ (targetSdk 35, `apktool.yml` `targetSdkVersion: 35`) requires `resources.arsc` stored uncompressed and 4-byte aligned, plus a v2+ signature — plain `jarsigner` alone fails install with error -124 | `fb90be4` |
-| 7 | Added/updated this README | *(this commit)* |
+| 7 | Fixed camera cutout/status-bar overlap: added `fitsSystemWindows="true"` to 10 activity root layouts (`activity_auth_temp_passcode.xml`, `activity_confirm_setup.xml`, `activity_help.xml`, `activity_main.xml`, `activity_package_history.xml`, `activity_phone_auth.xml`, `activity_settings.xml`, `activity_signature.xml`, `activity_terms_screen.xml`, `activity_welcome_screen.xml`), updated `styles.xml` `AppTheme` (`windowLayoutInDisplayCutoutMode never`, `windowOptOutEdgeToEdgeEnforcement`, `statusBarColor`, etc.), and enforced `LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER` in `BaseActivity.onCreate`; rebuilt, zipaligned, and re-signed APK (binary also updated in `decompiled/build/`) | `279cc44` |
+| 8 | Added/updated this README | *(this commit)* |
 
 ## Artifacts
 
@@ -69,6 +76,7 @@ The signed APK was decompiled again and checked:
 - `HttpClient.smali` line ~392 now loads `0x927c0` (600000 ms) before `setConnectTimeout`.
 - `APICalls.smali` line ~179 now loads `0x258` (600) for `LOADING_WINDOW_TIMEOUT_SECONDS`.
 - `APIClient$a.smali` `log()` now calls `android.util.Log.d("SevaOkHttp", p1)` and both `APIClient` builders attach `HttpLoggingInterceptor` at `Level.BODY`.
+- `styles.xml` `AppTheme` now declares `windowLayoutInDisplayCutoutMode never`, `windowOptOutEdgeToEdgeEnforcement true`, `statusBarColor` white, etc.; all 10 activity root layouts now have `fitsSystemWindows="true"`; `BaseActivity.smali` `onCreate` now sets `layoutInDisplayCutoutMode` to `2` (NEVER) on SDK ≥28.
 
 ## Install Note
 
